@@ -56,10 +56,12 @@ training_group.add_argument('--equi_n', type=int, default=4, help='The order of 
 training_group.add_argument('--aug', type=strToBool, default=False, help='If true, perform RAD data augmentation at each sample step')
 training_group.add_argument('--aug_type', type=str, choices=['se2', 'cn', 't', 'shift'], default='se2', help='The type of data augmentation')
 
+
 eval_group = parser.add_argument_group('eval')
 eval_group.add_argument('--num_eval_processes', type=int, default=5, help='The number of parallel environments for evaluation')
 eval_group.add_argument('--eval_freq', default=500, type=int, help='The evaluation frequency')
 eval_group.add_argument('--num_eval_episodes', default=100, type=int, help='The number of evaluation episodes')
+eval_group.add_argument('--object_index', default=-1, type=int, help='The index number of objects in object grasping')
 
 planner_group = parser.add_argument_group('planner')
 planner_group.add_argument('--planner_pos_noise', type=float, default=0)
@@ -155,6 +157,7 @@ aug = args.aug
 aug_type = args.aug_type
 
 # eval
+object_index = args.object_index
 num_eval_processes = args.num_eval_processes
 eval_freq = args.eval_freq
 num_eval_episodes = args.num_eval_episodes
@@ -278,6 +281,8 @@ if max_episode_steps != -1:
     env_config['max_steps'] = max_episode_steps
 if num_objects != -1:
     env_config['num_objects'] = num_objects
+if object_index != -1:
+    env_config['object_index'] = object_index
 
 if seed is not None:
     env_config['seed'] = seed

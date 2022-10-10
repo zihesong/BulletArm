@@ -3,6 +3,7 @@ import math
 import glob
 import numpy as np
 import bulletarm
+import csv
 from bulletarm.envs.base_env import BaseEnv
 from bulletarm.pybullet.utils import constants
 from bulletarm.pybullet.utils.constants import NoValidPositionException
@@ -24,9 +25,11 @@ class ObjectGrasping(BaseEnv):
         if 'object_scale_range' not in config:
             config['object_scale_range'] = [1, 1]
         if 'num_objects' not in config:
-            config['num_objects'] = 15
+            config['num_objects'] = 10
         if 'max_steps' not in config:
-            config['max_steps'] = 30
+            config['max_steps'] = 1
+        if 'object_index' not in config:
+            config["object_index"] = -1
         config['adjust_gripper_after_lift'] = True
         config['min_object_distance'] = 0.
         config['min_boarder_padding'] = 0.15
@@ -187,7 +190,7 @@ class ObjectGrasping(BaseEnv):
                             obj = self._generateShapes(constants.GRASP_NET_OBJ, 1,
                                                        random_orientation=self.random_orientation,
                                                        pos=[randpos], padding=self.min_boarder_padding,
-                                                       min_distance=self.min_object_distance, model_id=-1)
+                                                       min_distance=self.min_object_distance, model_id=self.object_index)
                             pb.changeDynamics(obj[0].object_id, -1, lateralFriction=0.6)
                             self.wait(10)
                     # elif True:
@@ -226,7 +229,7 @@ class ObjectGrasping(BaseEnv):
                             obj = self._generateShapes(constants.GRASP_NET_OBJ, 1,
                                                        rot=[pb.getQuaternionFromEuler([0., 0., -np.pi / 4])],
                                                        pos=[display_pos], padding=self.min_boarder_padding,
-                                                       min_distance=self.min_object_distance, model_id=i)
+                                                       min_distance=self.min_object_distance, model_id=self.object_index)
                             # obj = self._generateShapes(constants.RANDOM_HOUSEHOLD200, 1,
                             #                            rot=[pb.getQuaternionFromEuler([0., 0., -np.pi / 4])],
                             #                            pos=[display_pos], padding=self.min_boarder_padding,

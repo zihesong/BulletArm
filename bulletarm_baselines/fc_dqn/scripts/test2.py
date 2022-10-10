@@ -24,6 +24,8 @@ from bulletarm_baselines.fc_dqn.utils.env_wrapper import EnvWrapper
 
 ExpertTransition = collections.namedtuple('ExpertTransition', 'state obs action reward next_state next_obs done step_left expert')
 
+import time
+from skimage.util import random_noise
 
 def test():
     plt.style.use('default')
@@ -39,6 +41,14 @@ def test():
     step_times = []
     pbar = tqdm(total=test_episode)
     while total < 1000:
+
+        #obs = torch.tensor(random_noise(obs, mode='gaussian', mean=0, var=0.05, clip=True))
+
+        #obs = torch.tensor(random_noise(obs, mode='salt', amount=0.05))
+        obs = torch.tensor(random_noise(obs, mode='speckle', mean=0, var=0.05, clip=True))
+        obs=obs.type(torch.FloatTensor)
+        #print(gauss_img[0][0])
+        #time.sleep(1000)
         q_value_maps, actions_star_idx, actions_star = agent.getEGreedyActions(states, in_hands, obs, 0, 0)
         # plt.imshow(obs[0, 0])
         # plt.show()
@@ -72,11 +82,6 @@ def test():
 
     # np.save('ranks_dqfd_all.npy', ranks)
     # plotRanks(ranks, 1200)
-    return float(s) / total if total != 0 else 0
 
 if __name__ == '__main__':
-    sr_value = test()
-    print(sr_value)
-    print(object_index)
-    f=open("./object_info.txt","a")
-    f.write("index: " + str(object_index) + ", num: " + str(num_objects) + ", SR: " + str(sr_value) + "\n")
+    test()
