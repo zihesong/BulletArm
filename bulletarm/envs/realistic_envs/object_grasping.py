@@ -168,6 +168,8 @@ class ObjectGrasping(BaseEnv):
 
     def reset(self):
         ''''''
+        f=open("../../../pos_info.txt","a")
+        f.write("Env Reset:\n")
         if not self.initialized or self.obj_grasped == self.num_obj or self.current_episode_steps > self.max_steps or not self.isSimValid():
             while True:
                 self.resetPybulletWorkspace()
