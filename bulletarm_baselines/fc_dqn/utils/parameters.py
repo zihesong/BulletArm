@@ -42,7 +42,7 @@ training_group.add_argument('--target_update_freq', type=int, default=100, help=
 training_group.add_argument('--save_freq', type=int, default=500, help='The frequency of logging')
 training_group.add_argument('--load_model_pre', type=str, default=None, help='The directory to load model')
 training_group.add_argument('--sl', action='store_true', help='If true, perform supervised learning using gamma**step_left. Deprecated')
-training_group.add_argument('--planner_episode', type=int, default=2, help='The number of demonstration episodes to gather before training')
+training_group.add_argument('--planner_episode', type=int, default=200, help='The number of demonstration episodes to gather before training')
 training_group.add_argument('--note', type=str, default=None)
 training_group.add_argument('--seed', type=int, default=None)
 training_group.add_argument('--expert_aug_n', type=int, default=0, help='The number of data augmentation to perform on the expert data')
