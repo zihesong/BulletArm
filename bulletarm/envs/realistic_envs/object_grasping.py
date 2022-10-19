@@ -27,7 +27,7 @@ class ObjectGrasping(BaseEnv):
         if 'num_objects' not in config:
             config['num_objects'] = 10
         if 'max_steps' not in config:
-            config['max_steps'] = 1
+            config['max_steps'] = 50
         if 'object_index' not in config:
             config["object_index"] = -1
         config['adjust_gripper_after_lift'] = True
