@@ -28,34 +28,35 @@
 
 for ((j=25;j<34;j++));do
 {
-    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-14.12:32:11/models/snapshot' --env=object_grasping --object_index=${j}
+    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-19.11:28:15/models/snapshot' --env=object_grasping --object_index=${j}
 }
 done
 
 
 for ((j=34;j<43;j++));do
 {
-    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-15.07:20:19/models/snapshot' --env=object_grasping --object_index=${j}
+    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-19.23:46:33/models/snapshot' --env=object_grasping --object_index=${j}
 }
 done
 
 
 for ((j=43;j<51;j++));do
 {
-    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-16.02:36:10/models/snapshot' --env=object_grasping --object_index=${j}
+    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-20.11:45:55/models/snapshot' --env=object_grasping --object_index=${j}
 }
 done
 
 
 for ((j=51;j<60;j++));do
 {
-    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-16.21:44:43/models/snapshot' --env=object_grasping --object_index=${j}
+    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-20.23:45:25/models/snapshot' --env=object_grasping --object_index=${j}
 }
 done
 
 
-for ((j=60;j<68;j++));do
-{
-    python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-17.16:34:17/models/snapshot' --env=object_grasping --object_index=${j}
-}
-done
+# for ((j=60;j<68;j++));do
+# {
+#     python test.py --load_model_pre='/home/mxh170530/BulletArm/bulletarm_baselines/fc_dqn/scripts/output/margin_asr_equ_resu_df_flip_object_grasping/2022-10-17.16:34:17/models/snapshot' --env=object_grasping --object_index=${j}
+# }
+# done
+
