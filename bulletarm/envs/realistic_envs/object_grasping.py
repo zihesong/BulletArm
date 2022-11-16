@@ -187,9 +187,9 @@ class ObjectGrasping(BaseEnv):
                             #                            random_orientation=self.random_orientation,
                             #                            pos=[randpos], padding=self.min_boarder_padding,
                             #                            min_distance=self.min_object_distance, model_id=-1)
-
+# random_orientation=self.random_orientation,
                             obj = self._generateShapes(constants.GRASP_NET_OBJ, 1,
-                                                       random_orientation=self.random_orientation,
+                                                       rot=[pb.getQuaternionFromEuler([0., 0., -np.pi / 4])],
                                                        pos=[randpos], padding=self.min_boarder_padding,
                                                        min_distance=self.min_object_distance, model_id=self.object_index)
                             pb.changeDynamics(obj[0].object_id, -1, lateralFriction=0.6)
