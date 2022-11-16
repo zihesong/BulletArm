@@ -33,12 +33,12 @@ def test():
     agent.loadModel(load_model_pre)
     agent.eval()
     states, in_hands, obs = envs.reset()
-    test_episode = 1000
+    test_episode = 100
     total = 0
     s = 0
     step_times = []
     pbar = tqdm(total=test_episode)
-    while total < 1000:
+    while total < 100:
         q_value_maps, actions_star_idx, actions_star = agent.getEGreedyActions(states, in_hands, obs, 0, 0)
         # plt.imshow(obs[0, 0])
         # plt.show()

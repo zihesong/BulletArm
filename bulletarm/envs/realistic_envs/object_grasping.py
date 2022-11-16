@@ -178,7 +178,8 @@ class ObjectGrasping(BaseEnv):
                             x += self.workspace[0].mean()
                             y = (np.random.rand() - 0.5) * 0.1
                             y += self.workspace[1].mean()
-                            randpos = [x, y, 0.40]
+                            # randpos = [x, y, 0.40]
+                            randpos = [0.45163103975431074, -0.01348066127368648, 0.40]
                             # obj = self._generateShapes(constants.RANDOM_HOUSEHOLD, 1, random_orientation=self.random_orientation,
                             #                            pos=[randpos], padding=self.min_boarder_padding,
                             #                            min_distance=self.min_object_distance, model_id=-1)
