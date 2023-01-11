@@ -213,6 +213,8 @@ def train():
             eps = exploration.value(logger.num_eps)
         is_expert = 0
         q_value_maps, actions_star_idx, actions_star = agent.getEGreedyActions(states, in_hands, obs, eps)
+        f=open("../../scripts/output/action.txt","a")
+        f.write("action_idx: " + str(actions_star_idx) + "\n action: " + str(actions_star)  + "\n")
 
         buffer_obs = getCurrentObs(in_hands, obs)
         actions_star = torch.cat((actions_star, states.unsqueeze(1)), dim=1)
