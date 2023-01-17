@@ -108,9 +108,7 @@ class DQN3DFCN(Base3D):
         rot = self.rzs[rot_idx]
         x = (pixels[:, 0].float() * self.heightmap_resolution + self.workspace[0][0]).reshape(states.size(0), 1)
         y = (pixels[:, 1].float() * self.heightmap_resolution + self.workspace[1][0]).reshape(states.size(0), 1)
-        #how does axis-z change? if it only go down once, what is the condition?
         actions = torch.cat((x, y, rot), dim=1)
-        #what is action_idx?
         action_idx = torch.cat((pixels, rot_idx), dim=1)
         return q_value_maps, action_idx, actions
 
