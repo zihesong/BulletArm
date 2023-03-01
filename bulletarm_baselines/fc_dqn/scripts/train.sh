@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 # for ((j=-4;j>=-7;j--));do
 # {
