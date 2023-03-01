@@ -379,7 +379,7 @@ class BaseEnv:
     return self._isHolding(), in_hand_img, self.heightmap.reshape([1, self.heightmap_size, self.heightmap_size])
 
   def _getHeightmap(self):
-    return self.sensor.getHeightmap(self.heightmap_size)
+    return self.sensor.getHeightmap(self.heightmap_size, self.objects)
 
   def _getValidPositions(self, border_padding, min_distance, existing_positions, num_shapes, sample_range=None):
     existing_positions_copy = copy.deepcopy(existing_positions)

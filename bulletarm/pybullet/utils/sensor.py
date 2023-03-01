@@ -22,14 +22,14 @@ class Sensor(object):
     )
     self.proj_matrix = pb.computeProjectionMatrixFOV(70, 1, 0.001, 0.3)
 
-  def getHeightmap(self, size):
+  def getHeightmap(self, size, objs):
     image_arr = pb.getCameraImage(width=size, height=size,
                                   viewMatrix=self.view_matrix,
                                   projectionMatrix=self.proj_matrix,
                                   renderer=pb.ER_TINY_RENDERER)
     depth_img = np.array(image_arr[3])
     depth = self.far * self.near / (self.far - (self.far - self.near) * depth_img)
-    for obj in self.objects:
+    for obj in objs:
       p = obj.getPosition()
       f=open("../../pos_info.txt","a")
       f.write("object_index: " + str(obj) + ", pos: " + str(p) + "\n")
