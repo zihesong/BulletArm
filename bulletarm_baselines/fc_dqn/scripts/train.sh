@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # for ((j=-4;j>=-7;j--));do
 # {
@@ -7,4 +7,4 @@
 # }
 # done
 
-python main.py --env=object_grasping
+python main.py --env=object_grasping --object_index=1
