@@ -29,7 +29,7 @@ class ObjectGrasping(BaseEnv):
         if 'max_steps' not in config:
             config['max_steps'] = 50
         if 'object_index' not in config:
-            config["object_index"] = -1
+            config["object_index"] = 3
         config['adjust_gripper_after_lift'] = True
         config['min_object_distance'] = 0.
         config['min_boarder_padding'] = 0.15

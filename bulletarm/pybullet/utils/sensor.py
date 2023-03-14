@@ -45,7 +45,7 @@ class Sensor(object):
       obj = pyredner.load_obj(dir, return_objects=True)
       newObj = obj[0]
       d_x, d_y, d_z = position[0], position[1], position[2]
-      newObj.vertices += torch.tensor([d_x, d_z, d_y])
+      newObj.vertices += torch.tensor([d_x, d_y, d_z])
       return newObj
 
     def rendering(cam_pos, cam_up_vector, target_pos, obj_list):
@@ -79,8 +79,8 @@ class Sensor(object):
     obj_list = []
 
     for _ in objs:
-      p = random.uniform(0.0, 1.0)
-      p = torch.tensor([p, 0, p])
+      p = random.uniform(-1.0, 1.0)
+      p = torch.tensor([p, p, 0])
       newObj = setPosition(p)
       obj_list.append(newObj)
 
@@ -90,14 +90,49 @@ class Sensor(object):
     #return np.abs(depth - np.max(depth)).reshape(size, size)
 
     img = rendering(self.cam_pos, self.cam_up_vector, self.target_pos, obj_list)
+
     return img
 
-  def getRGBImg(self, size):
-    image_arr = pb.getCameraImage(width=size, height=size,
-                                  viewMatrix=self.view_matrix,
-                                  projectionMatrix=self.proj_matrix,
-                                  renderer=pb.ER_TINY_RENDERER)
-    rgb_img = np.moveaxis(image_arr[2][:, :, :3], 2, 0) / 255
+  def getRGBImg(self, size, objs):
+    # image_arr = pb.getCameraImage(width=size, height=size,
+    #                               viewMatrix=self.view_matrix,
+    #                               projectionMatrix=self.proj_matrix,
+    #                               renderer=pb.ER_TINY_RENDERER)
+    # rgb_img = np.moveaxis(image_arr[2][:, :, :3], 2, 0) / 255
+    def setPosition(position: List[float] = None):
+      dir = "/Users/tingxi/_BulletArm/BulletArm/bulletarm/pybullet/urdf/object/GraspNet1B_object/003/convex.obj"
+      obj = pyredner.load_obj(dir, return_objects=True)
+      newObj = obj[0]
+      d_x, d_y, d_z = position[0], position[1], position[2]
+      newObj.vertices += torch.tensor([d_x, d_y, d_z])
+      return newObj
+
+    def rendering(cam_pos, cam_up_vector, target_pos, obj_list):
+      
+      cam_pos = torch.FloatTensor(cam_pos)
+      cam_up_vector = torch.FloatTensor(cam_up_vector)
+      target_pos = torch.FloatTensor(target_pos)
+
+      camera = pyredner.Camera(position = cam_pos,
+                          look_at = target_pos,
+                          up = cam_up_vector,
+                          fov = torch.tensor([30.0]), # in degree
+                          clip_near = 1e-2, # needs to > 0
+                          resolution = (128, 128)
+                          )
+      
+      scene = pyredner.Scene(camera = camera, objects = obj_list)
+      rgb_img = pyredner.render_albedo(scene, alpha=False)
+      return rgb_img.numpy()  
+    
+    obj_list = []
+
+    for _ in objs:
+      p = random.uniform(-1.0, 1.0)
+      p = torch.tensor([p, p, 0])
+      newObj = setPosition(p)
+      obj_list.append(newObj)
+    rgb_img = rendering(self.cam_pos, self.cam_up_vector, self.target_pos, obj_list)
     return rgb_img
 
   def getDepthImg(self, size):

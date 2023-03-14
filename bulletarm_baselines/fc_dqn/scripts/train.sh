@@ -7,4 +7,4 @@
 # }
 # done
 
-python main.py --env=object_grasping --object_index=1
+python main.py --env=object_grasping --object_index=3
